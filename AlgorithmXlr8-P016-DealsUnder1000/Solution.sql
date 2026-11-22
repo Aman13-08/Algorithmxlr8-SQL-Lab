@@ -1,0 +1,8 @@
+-- Write your SQLite query below
+
+SELECT product_id,
+       name,
+       ROUND(price * (100 - COALESCE(discount_pct, 0)) / 100.0, 2) AS final_price
+FROM Products
+WHERE price * (100 - COALESCE(discount_pct, 0)) / 100.0 < 1000
+ORDER BY final_price, product_id;
